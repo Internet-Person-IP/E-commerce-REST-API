@@ -1,3 +1,5 @@
+const sql = require('../util/database');
+
 let products =[{id:1,name:"Chicken Biscuit"},{ id:2,name:"Kebab"}];
 
 exports.getAllProducts =(req,res) =>{
@@ -16,6 +18,21 @@ exports.createProduct = (req,res) => {
     products=[...products,newFood];
 
     res.json(products);
+
+}
+
+exports.updateProduct =(req,res) =>{
+    sql.execute()
+    .then()
+    .then()
+    .catch();
+}
+
+exports.deleteProduct = (req,res) =>{
+    sql.execute()
+    .then()
+    .then()
+    .catch();
 
 }
 
