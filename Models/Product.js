@@ -8,11 +8,11 @@ exports.createTable = () => {
     PictureURL VARCHAR(255) NOT NULL,
     Description TEXT,
     creatorID INT NOT NULL,
+    Price DECIMAL NOT NULL,
     PRIMARY KEY(Id),
-    FOREIGN KEY(creatorID) REFERENCES user(Id)
-    ON DELETE CASCADE
+    FOREIGN KEY(creatorID) REFERENCES User(Id) ON DELETE CASCADE
     );`)
     .then(() => console.log("Product Table Created"))
-    .catch(err => console.log("Table not created "+err));
+    .catch(err => console.log(err));
     
 }

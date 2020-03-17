@@ -1,9 +1,18 @@
 const sql = require('../util/database');
 
-let products =[{id:1,name:"Chicken Biscuit"},{ id:2,name:"Kebab"}];
-
 exports.getAllProducts =(req,res) =>{
-    res.status(200).json(products);
+    sql.execute(`
+    SELECT * FROM Product;
+    `)
+    .then(([rows,fields]) =>{    
+        res.status(200).json({
+            AllProducts:rows
+        });
+    })
+    .catch((err)=>{ 
+        console.log(err);
+        res.status(404).json({statusCode:404});
+    });
 }
 
 exports.getProduct = (req,res) =>{
