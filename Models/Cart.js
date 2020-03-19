@@ -10,7 +10,7 @@ exports.createTable = () => {
         FOREIGN KEY(productID) REFERENCES Product(Id) ON DELETE CASCADE
         );`)
     .then(() => console.log("Cart Table Created"))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(`Error: ${err.message}`));
 }
 
 

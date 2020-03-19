@@ -11,7 +11,7 @@ exports.createTable = () => {
     PRIMARY KEY(Id)
     );`)
     .then(() => console.log("User Table Created"))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(`Error: ${err.message}`));
 }
 
 

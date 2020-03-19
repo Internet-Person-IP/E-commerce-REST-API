@@ -13,6 +13,6 @@ exports.createTable = () => {
     FOREIGN KEY(creatorID) REFERENCES User(Id) ON DELETE CASCADE
     );`)
     .then(() => console.log("Product Table Created"))
-    .catch(err => console.log(err));
+    .catch(err => console.log(`Error: ${err.message}`));
     
 }

@@ -2,7 +2,7 @@ const sql = require("../util/database");
 
 exports.createTable = () => {
     sql.query(`
-    CREATE TABLE Order (
+    CREATE TABLE Orders (
     Id INT NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
     orderDate DATETIME NOT NULL,
@@ -11,7 +11,7 @@ exports.createTable = () => {
     FOREIGN KEY(userID) REFERENCES User(Id)
     );`)
     .then(() => console.log("Order Table Created"))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(`Error: ${err.message}`));
 }
 
 

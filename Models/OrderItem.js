@@ -5,12 +5,12 @@ exports.createTable = () => {
     CREATE TABLE OrderItem (
     orderID INT NOT NULL,
     productID INT NOT NULL,
-    quantity INT NOT NULL
-    FOREIGN KEY(orderID) REFERENCES Order(Id),
-    FOREIGN KEY(productID) REFERENCES Product(id)
+    quantity INT NOT NULL,
+    FOREIGN KEY(orderID) REFERENCES Orders(Id),
+    FOREIGN KEY(productID) REFERENCES Product(Id)
     );`)
-    .then(() => console.log("User Table Created"))
-    .catch((err) => console.log(err));
+    .then(() => console.log("OrderItem Table Created"))
+    .catch((err) => console.log(`Error: ${err.message}`));
 }
 
 

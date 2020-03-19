@@ -15,33 +15,67 @@ exports.getAllProducts =(req,res) =>{
     });
 }
 
+//Add Record not found error
 exports.getProduct = (req,res) =>{
-    res.status(200).json(products[req.params.id]);
+    sql.execute(`
+    SELECT * FROM Product WHERE id=?;
+    `,[req.params.id])
+    .then(([rows, fields]) => {
+        res.status(200).json({product:rows});
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(404),json({statusCode:404});
+    })
 }
-
+//when create return object
 exports.createProduct = (req,res) => {
-    const newFood={
-        id: req.body.id,
-        name: req.body.name
-    }
-    products=[...products,newFood];
-
-    res.json(products);
-
+    sql.execute(`
+    INSERT INTO Product 
+    (ProductName, PictureURL,Description,CreatorID,Price)
+    VALUES
+    (?,?,?,?,?);
+    `,[req.body.ProductName,req.body.PictureURL,req.body.Description,req.body.CreatorID,req.body.Price])
+    .then(([rows,fields]) =>{
+        res.status(201).json({newProduct:rows});
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(401).json({statusCode:401});
+    });
 }
 
 exports.updateProduct =(req,res) =>{
-    sql.execute()
-    .then()
-    .then()
-    .catch();
+    sql.execute(`
+    UPDATE Product SET
+    ProductName=?,
+    PictureURL=?,
+    Description=?,
+    CreatorID=?,
+    Price=?
+    WHERE Id=?;
+    `,[req.body.ProductName,req.body.PictureURL,req.body.Description,req.body.CreatorID,req.body.Price,req.params.id])
+    .then(([rows,fields]) => {
+        res.status(200).json({UpdatedProduct:rows});
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(401).json({statusCode:401});
+
+    });
 }
 
 exports.deleteProduct = (req,res) =>{
-    sql.execute()
-    .then()
-    .then()
-    .catch();
+    sql.execute(`
+    DELETE FROM Product WHERE Id=?
+    `,[req.params.id])
+    .then(([rows,fields]) => {
+        res.status(200).json({DeletedProduct:rows});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(401).json({statusCode:401});
+    });
 
 }
 

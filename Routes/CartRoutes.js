@@ -7,11 +7,11 @@ This endpoints starts with /Carts
 
 */
 
-Router.get('/getall',cartsController.GetAllCartItems);
-Router.get('/:id', cartsController.GetCartItem);
+//Router.get('/getall',cartsController.GetAllCartItems);
+Router.get('/:userID', cartsController.GetCartItem);
 Router.post('/',cartsController.AddCartItem);
-Router.put('/:id', cartsController.UpdateCartItem);
-Router.delete('/:id',cartsController.DeleteCartItem);
+Router.put('/:userID', cartsController.UpdateCartItem);
+Router.delete('/:userID',cartsController.DeleteCartItem);
 module.exports = Router; 
 
 //https://hub.packtpub.com/best-practices-for-restful-web-services-naming-conventions-and-api-versioning-tutorial/

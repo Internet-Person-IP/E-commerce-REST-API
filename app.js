@@ -5,12 +5,18 @@ const userRoutes = require('./Routes/UserRoutes');
 const cartRoutes = require('./Routes/CartRoutes');
 const User = require("./Models/User");
 const Product = require("./Models/Product");
+const Order = require("./Models/Order");
+const OrderItem = require("./Models/OrderItem");
+const Cart = require("./Models/Cart");
 const PORT = process.env.PORT || 5000;
 
 
 User.createTable();
 Product.createTable();
-
+Cart.createTable();
+Order.createTable();
+OrderItem.createTable();
+//Add Correct REST Responses
 app.use(express.json());
 //app.use(express.urlencoded({extended:false}));
 app.use('/products', productsRoutes);
