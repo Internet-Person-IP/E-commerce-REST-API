@@ -15,7 +15,11 @@ exports.getAllOrders =(req,res) =>{
 
 
 exports.getOrder = (req,res) =>{
-    sql.execute(``,[])
+    sql.execute(`
+    
+    
+    
+    `,[])
     .then(([rows, fields]) => {
         res.status(200).json({Order:rows});
     })
@@ -26,7 +30,10 @@ exports.getOrder = (req,res) =>{
 }
 //when create return object
 exports.createOrder = (req,res) => {
-    sql.execute(``,[])
+    sql.execute(`
+    
+    
+    `,[])
     .then(([rows,fields]) =>{
         res.status(201).json({newOrder:rows});
     })
