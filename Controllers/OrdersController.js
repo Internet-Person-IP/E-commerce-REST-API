@@ -1,7 +1,10 @@
 const sql = require('../util/database');
+const sqlstring =require('sqlstring');
 
 exports.getAllOrders =(req,res) =>{
-    sql.execute(``)
+    sql.execute(`
+    SELECT Id, DATE_ADD(orderDate, INTERVAL 1 HOUR) AS DATE, TOTALPRICE FROM orders WHERE userId=?;
+    `,[req.params.userID])
     .then(([rows,fields]) =>{    
         res.status(200).json({
             AllOrders:rows
@@ -16,12 +19,25 @@ exports.getAllOrders =(req,res) =>{
 
 exports.getOrder = (req,res) =>{
     sql.execute(`
-    
-    
-    
-    `,[])
+    SELECT o.Id,o.orderDate,oi.productID,p.ProductName,p.Price,oi.quantity,p.Price*oi.quantity AS TotalCost
+    FROM orders o 
+    INNER JOIN orderitem oi 
+    ON o.Id=oi.orderID
+    INNER JOIN product p
+    ON p.Id=oi.productID
+    WHERE o.Id=?  
+    UNION ALL
+    SELECT NULL,NULL,NULL,NULL,NULL,NULL,TOTALPRICE 
+    FROM orders o2 
+    WHERE o2.Id=?;
+    `,[req.params.orderID,req.params.orderID])
     .then(([rows, fields]) => {
-        res.status(200).json({Order:rows});
+        console.log(rows);
+        const TotalPriceOfOrder=rows.pop().TotalCost;
+        res.status(200).json({
+            Order:rows,
+            TotalPrice:TotalPriceOfOrder
+        });
     })
     .catch((err) => {
         console.log(err);
@@ -30,10 +46,26 @@ exports.getOrder = (req,res) =>{
 }
 //when create return object
 exports.createOrder = (req,res) => {
-    sql.execute(`
-    
-    
-    `,[])
+    const userID=req.body.userID;
+    const query = sqlstring.format(`
+    START TRANSACTION;
+        SET @t =(SELECT SUM(c.Quantity*p.price) 
+        FROM Product p
+        INNER JOIN Cart c 
+        ON c.userID=? AND p.Id=c.productID);
+
+        INSERT INTO orders (userId,orderDate, TOTALPRICE)
+        VALUES
+        (?,NOW(),@t);
+
+        INSERT INTO orderitem(orderID,productID,quantity)
+        SELECT 
+        (SELECT LAST_INSERT_ID()),productID, Quantity 
+        FROM cart 
+        WHERE userID=?;
+    COMMIT;
+    `,[userID,userID,userID]);
+    sql.query(query)
     .then(([rows,fields]) =>{
         res.status(201).json({newOrder:rows});
     })
