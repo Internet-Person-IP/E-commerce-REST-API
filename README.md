@@ -43,20 +43,19 @@ The purpose of the project was to learn and get a basic understanding of SQL and
 
 The stack consist of a couple of aspects:
 
-1. Backend Code - the backend was written in Node.js using Express.js. Express was used since it is a simple framework for creating REST APIs with minimal restriction and guidelines which made the development quite simple and fast.
+1. Backend Code - the backend was written in Node.js using Express.js. Express was used since it is a simple framework for creating REST APIs with minimal restriction and guidelines which made the development quite simple and fast. A form of the MVC pattern was applied. 
  
-3. Database - SQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. SQL was used since in an E-commerce store there is quite a lot of relations.
+3. Database - MySQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. MySQL was used since in an E-commerce store there is quite a lot of relations.
 
 4. Swagger - Swagger was used as a simple way to display the API. This it quite easy to display and explain all the endpoints in a simple webapplication.
 
 5. Hosting - The hosting platform that was used in Heroku. The main reason is that it is quite Cheap and hosting was really easy to setup.
 
+## 5. Database - Tables and Relations
+
 ## 4. Code
 
-  
 
 ## 5. Usage
-
-  
 
 ## 6. Future
