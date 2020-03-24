@@ -74,21 +74,13 @@ exports.createOrder = (req,res) => {
         res.status(401).json({statusCode:401});
     });
 }
-/*
-exports.update =(req,res) =>{
-    sql.execute(``,[])
-    .then(([rows,fields]) => {
-        res.status(200).json({UpdatedProduct:rows});
-    })
-    .catch(err =>{
-        console.log(err);
-        res.status(401).json({statusCode:401});
 
-    });
-}
-*/
+/*
 exports.deleteOrder = (req,res) =>{
-    sql.execute(``,[])
+
+    sql.execute(`
+    
+    `,[])
     .then(([rows,fields]) => {
         res.status(200).json({DeletedOrder:rows});
     })
@@ -98,4 +90,4 @@ exports.deleteOrder = (req,res) =>{
     });
 
 }
-
+*/
