@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const swaggerJsDoc = require("swagger-jsdoc");
+//const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require('swagger-ui-express');
 const productsRoutes = require('./Routes/ProductRoutes');
 const userRoutes = require('./Routes/UserRoutes');
@@ -12,8 +12,8 @@ const Order = require("./Models/Order");
 const OrderItem = require("./Models/OrderItem");
 const Cart = require("./Models/Cart");
 const PORT = process.env.PORT || 5000;
-
-swaggerOptions ={
+const swaggerDocumentation = require("./docs/docs");
+/*swaggerOptions ={
     swaggerDefinition:{
         info: {
         title: "E-commerce API",
@@ -26,7 +26,7 @@ swaggerOptions ={
 };
 
 const swaggerDocs=swaggerJsDoc(swaggerOptions);
-
+*/
 User.createTable();
 Product.createTable();
 Cart.createTable();
@@ -34,7 +34,7 @@ Order.createTable();
 OrderItem.createTable();
 //Add Correct REST Responses
 app.use(express.json());
-app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs))
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocumentation))
 //app.use(express.urlencoded({extended:false}));
 app.use('/products', productsRoutes);
 app.use('/users',userRoutes);
