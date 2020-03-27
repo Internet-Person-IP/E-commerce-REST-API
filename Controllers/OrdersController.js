@@ -2,6 +2,7 @@ const sql = require('../util/database');
 const sqlstring =require('sqlstring');
 
 exports.getAllOrders =(req,res) =>{
+    console.log(req.params.userID)
     sql.execute(`
     SELECT Id, DATE_ADD(orderDate, INTERVAL 1 HOUR) AS DATE, TOTALPRICE FROM orders WHERE userId=?;
     `,[req.params.userID])

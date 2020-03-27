@@ -45,7 +45,7 @@ exports.AddCartItem =(req,res) =>{
     });
 }
 exports.UpdateCartItem = (req,res) =>{
-    sql.execute(`
+     sql.execute(`
     UPDATE Cart SET
     Quantity=?
     WHERE userID=? AND productID=?;
