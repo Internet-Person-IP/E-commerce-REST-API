@@ -52,11 +52,10 @@ The stack consist of a couple of aspects:
 5. Hosting - The hosting platform that was used in Heroku. The main reason is that it is quite Cheap and hosting was really easy to setup.
 
 ## 4. Database - Tables and Relations
-![Database Design Image] (SQLDiagram.png)
+![Image] (/SQLDiagram.png)
        SQL table design and relations are as follows.  The user signs up and logs in to the application. The  user details are stored in USER table and authentication and authorization is performed on the user.
  There are different products which can be queried from the PRODUCT table. The user selects different products to buy. The CART table is updated with the products to be bought along with the quantity of the products. When the user deciides to buy the products in cart and checks out his products, the ORDER table and the ORDERITEM Tables are inserted for the order and the CART table is deleted for the user.
 
-
 ## 5. Future
 
-    Plan to implement  Search function and pagination.
+     We plan to include search function and pagination in the future.
