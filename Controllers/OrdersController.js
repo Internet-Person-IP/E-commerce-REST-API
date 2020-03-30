@@ -3,7 +3,7 @@ const sqlstring =require('sqlstring');
 
 exports.getAllOrders =(req,res) =>{
     sql.execute(`
-    SELECT Id, DATE_ADD(orderDate, INTERVAL 1 HOUR) AS DATE, TOTALPRICE FROM orders WHERE userId=?;
+    SELECT Id, DATE_ADD(orderDate, INTERVAL 1 HOUR) AS DATE, TOTALPRICE FROM Orders WHERE userId=?;
     `,[req.params.userID])
     .then(([rows,fields]) =>{    
         res.status(200).json({
@@ -20,15 +20,15 @@ exports.getAllOrders =(req,res) =>{
 exports.getOrder = (req,res) =>{
     sql.execute(`
     SELECT o.Id,o.orderDate,oi.productID,p.ProductName,p.Price,oi.quantity,p.Price*oi.quantity AS TotalCost
-    FROM orders o 
-    INNER JOIN orderitem oi 
+    FROM Orders o 
+    INNER JOIN OrderItem oi 
     ON o.Id=oi.orderID
-    INNER JOIN product p
+    INNER JOIN Product p
     ON p.Id=oi.productID
     WHERE o.Id=?  
     UNION ALL
     SELECT NULL,NULL,NULL,NULL,NULL,NULL,TOTALPRICE 
-    FROM orders o2 
+    FROM Orders o2 
     WHERE o2.Id=?;
     `,[req.params.orderID,req.params.orderID])
     .then(([rows, fields]) => {
@@ -54,31 +54,36 @@ exports.createOrder = (req,res) => {
         INNER JOIN Cart c 
         ON c.userID=? AND p.Id=c.productID);
 
-        INSERT INTO orders (userId,orderDate, TOTALPRICE)
+        INSERT INTO Orders (userId,orderDate, TOTALPRICE)
         VALUES
         (?,NOW(),@t);
 
-        INSERT INTO orderitem(orderID,productID,quantity)
+        INSERT INTO OrderItem(orderID,productID,quantity)
         SELECT 
         (SELECT LAST_INSERT_ID()),productID, Quantity 
-        FROM cart 
+        FROM Cart 
         WHERE userID=?;
     COMMIT;
     `,[userID,userID,userID]);
     sql.query(query)
     .then(([rows,fields]) =>{
-        res.status(201).json({newOrder:rows});
+        res.status(201).json({newOrder:{
+            message:"Order Created From Cart"
+        }});
     })
     .catch((err) => {
         console.log(err);
-        res.status(401).json({statusCode:401});
+        res.status(500).json({
+            statusCode:500,
+            message: "Internal Server Errors Cant create Order in DB"
+        });
     });
 }
-
 /*
 exports.deleteOrder = (req,res) =>{
 
     sql.execute(`
+
     
     `,[])
     .then(([rows,fields]) => {

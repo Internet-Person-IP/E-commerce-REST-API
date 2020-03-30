@@ -20,44 +20,64 @@ exports.GetCartItem = (req,res) =>{
             {
             cart:rows,
             TotalPriceOfCart:TotalPriceOfCart
-
             });
     })
     .catch(err =>{
         console.log(err);
-        res.status(400).json({statusCode:400});
+        res.status(500).json({
+            statusCode:500,
+            message:"Internal Server Errors Cant get Cart from DB",
+            Error:err
+        });
     });
 }
 
 exports.AddCartItem =(req,res) =>{
+    const {userID,productID,Quantity}=req.body;
     sql.execute(`
-    INSERT INTO CART
+    INSERT INTO Cart
     (userID,productID,Quantity)
     VALUES
     (?,?,?);
-    `, [req.body.userID,req.body.productID,req.body.Quantity])
+    `, [userID,productID,Quantity])
     .then(([rows,fields]) =>{
-        res.status(200).json({newCartItem:rows});
+        res.status(201).json({
+            newCartItem:{
+            productID,
+            Quantity
+        }});
     })
     .catch(err =>{
         console.log(err);
-        res.status(400).json({statusCode:401});
+        res.status(500).json({
+            statusCode:500,
+            message:"Internal Server Errors Cant Add Cart Item to DB",
+            Error:err
+        });
     });
 }
 exports.UpdateCartItem = (req,res) =>{
+    const {Quantity,productID} =req.body;
     sql.execute(`
     UPDATE Cart SET
     Quantity=?
     WHERE userID=? AND productID=?;
-    `,[req.body.Quantity,req.params.userID, req.body.productID])
+    `,[Quantity,req.params.userID, productID])
     .then(([rows,fields]) =>{
         res.status(200).json({
-            UpdatedCartItem: rows
+            UpdatedCartItem: {
+                Quantity:Quantity,
+                productID:productID
+            }
         })
     })
     .catch(err =>{
         console.log(err);
-        res.status(404).json({statusCode:404});
+        res.status(500).json({
+            statusCode:500,
+            message:"Internal Server Errors Cant Update CartItem from DB",
+            Error:err
+        });
     });
 }
 exports.DeleteCartItem = (req,res) =>{
@@ -65,12 +85,19 @@ exports.DeleteCartItem = (req,res) =>{
     DELETE FROM Cart WHERE userID=? AND productID=?
     `,[req.params.userID,req.body.productID])
     .then(([rows,fields]) =>{
-        res.status(200).json({DeletedProduct:rows});
+        res.status(200).json({
+            DeletedProduct:{
+            productID:req.body.productID
+        }});
 
     })
     .catch(err =>{
         console.log(err)
-        res.status(404).json({statusCode:404});
+        res.status(404).json({
+            statusCode:500,
+            message:"Internal Server Errors Cant Delete CartItem from DB",
+            Error:err
+        });
 
     });
 }

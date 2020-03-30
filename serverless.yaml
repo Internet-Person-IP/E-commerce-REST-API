@@ -1,0 +1,22 @@
+service: express-app
+
+plugins:
+  - serverless-ignore
+
+provider:
+  name: aws
+  environment:
+    HOST: ${file(../serverless.env.json):DB_HOST}
+    USER: ${file(../serverless.env.json):DB_USER}
+    DATABASE: ${file(../serverless.env.json):DB_DATABASE}
+    PASSWORD: ${file(../serverless.env.json):DB_PASSWORD}
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-north-1
+
+functions:
+  app:
+    handler: app.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

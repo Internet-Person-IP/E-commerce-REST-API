@@ -1,7 +1,7 @@
 const sql = require("../util/database");
 
-exports.createTable = () => {
-    sql.query(`
+exports.createTable = async () => {
+    await sql.query(`
     CREATE TABLE Orders (
     Id INT NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
