@@ -13,9 +13,9 @@ module.exports = pool.promise();
 //maybe do promise but why?
 /*{
     host:'localhost',
-    user:'nodejs',
+    user:'root',
     database:'e_commerce_app',
-    password :'123456',
+    password :'kavitha',
     multipleStatements: true
 }
 

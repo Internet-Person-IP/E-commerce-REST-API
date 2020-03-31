@@ -15,11 +15,9 @@
 
 ### 3. [Technology Stack](#technology-stack)
 
-### 4. [Code](#code)
+### 4. [Database - Tables and Relations](#database-tables-and-relations)
 
-### 5. [Application Flow](#application-flow)
-
-### 6. [Future](#future)
+### 5. [Future](#future)
 
   
 
@@ -37,7 +35,7 @@ The Swagger Documentation shows the different endpoints of the application and t
 
 ## 2. Purpose
 
-The purpose of the project was to learn and get a basic understanding of SQL and some of the basic Termonology and theory. When doing research most people seem to suggest creating a basic E-commerce platform is quite educational on the theory of SQL. The idea of creating a REST API is for a simple way to apply the SQL knowledge but the main focus was on learning SQL and trying to implement a E-commerce Database.
+The purpose of the project was to learn and get a basic understanding of SQL and some of the basic terminology and theory. When doing research most people seem to suggest creating a basic E-commerce platform is quite educational on the theory of SQL. The idea of creating a REST API is  a simple way to apply the SQL knowledge but the main focus was on learning SQL and trying to implement a E-commerce Database.
 
 ## 3. Technology Stack
 
@@ -45,17 +43,21 @@ The stack consist of a couple of aspects:
 
 1. Backend Code - the backend was written in Node.js using Express.js. Express was used since it is a simple framework for creating REST APIs with minimal restriction and guidelines which made the development quite simple and fast. A form of the MVC pattern was applied. 
  
-3. Database - MySQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. MySQL was used since in an E-commerce store there is quite a lot of relations.
+2. Database - MySQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. MySQL was used since in an E-commerce store there is quite a lot of relations.
 
-4. Swagger - Swagger was used as a simple way to display the API. This it quite easy to display and explain all the endpoints in a simple webapplication.
+3. Swagger - Swagger was used as a simple way to display the API. This it quite easy to display and explain all the endpoints in a simple webapplication.
 
-5. Hosting - The hosting platform that was used in Heroku. The main reason is that it is quite Cheap and hosting was really easy to setup.
+4. Hosting - The hosting platform that was used in Heroku. The main reason is that it is quite Cheap and hosting was really easy to setup.
 
-## 5. Database - Tables and Relations
+## 4. Database - Tables and Relations
+![Image](/SQLDiagram.png)
 
-## 4. Code
+
+   SQL table design and relations are as follows.  The user signs up and logs in to the application. The  user details are stored in USER table and authentication and authorization is performed on the user.
 
 
-## 5. Usage
+ There are different products which can be queried from the PRODUCT table. The user selects different        products to buy. The CART table is updated with the products to be bought along with the quantity of the products. When the user deciides to buy the products in cart and checks out his products, the ORDER table and the ORDERITEM Tables are inserted for the order and the CART table is deleted for the user.
 
-## 6. Future
+## 5. Future
+
+     We plan to include search function and pagination in the future.

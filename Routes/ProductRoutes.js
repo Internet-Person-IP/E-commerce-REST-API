@@ -14,6 +14,7 @@ PUT : SELECT CreatorID FROM Product WHERE Id=req.params.id;
 DELETE : SELECT CreatorID FROM Product WHERE Id=req.params.id;
 Column,Table,FilterName,FilterValue
 */
+ 
 
 Router.get('/getall',productsController.getAllProducts);
 Router.get('/:id', productsController.getProduct);
