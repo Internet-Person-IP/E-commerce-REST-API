@@ -3,7 +3,7 @@ module.exports = {
 
     "swagger": "2.0",
     "info": {
-      "description": "This is the API's for E Commerce Application.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+      "description": "This is the API's for E Commerce Application. An user has to be created through /users API.After that, the user has to login through /login API. Login API Output has the JWT token. That token has to be updated in Authorize. This logs in the  . After that,the Product/cart/order API can be used ",
       "version": "1.0.0",
       "title": "Swagger E-Commerce Application",
       "termsOfService": "http://swagger.io/terms/",
@@ -47,7 +47,7 @@ module.exports = {
         }
       }, 
       {
-        "name": "user",
+        "name": "User",
         "description": "Customers  ",
         "externalDocs": {
           "description": "Find out more about our store",
@@ -87,20 +87,17 @@ module.exports = {
             }
           ],
           "responses": {
-            "401": {
+            "500": {
               "description": "Unsuccessfull"
             },
-            "200": {
+            "201": {
               "description": "Successfully added product"
             }
 
           },
           "security": [
             {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
+              "Bearer":[]
             }
           ]
         },
@@ -122,21 +119,14 @@ module.exports = {
             "application/json"
           ],
           "responses": {
-            "401": {
+            "500": {
               "description": "Did not retrieve all the products"
             },
             "200": {
               "description": "Successfully retrieved all the products"
             },
           },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
+          
         }
       },
         "/products/{productID}": { 
@@ -167,20 +157,15 @@ module.exports = {
             ],
             "responses": {
               "404": {
-                "description": "Did not retrieve  the product requested"
+                "description": "Did not find the product requested"
               },
               "200": {
                 "description": "Successfully retrieved  the product"
               },
+              "500": {
+                "description": "Error retrieving the product"
+              },
             },
-            "security": [
-              {
-                "petstore_auth": [
-                  "write:pets",
-                  "read:pets"
-                ]
-              }
-            ]
           },
           "put":{ 
             "tags": [
@@ -215,22 +200,20 @@ module.exports = {
                 }
               }
             ],
-            "responses": {
-              "404": {
-                "description": "Did not retrieve  the product requested"
-              },
-              "200": {
-                "description": "Successfully retrieved  the product"
-              },
-            },
             "security": [
               {
-                "petstore_auth": [
-                  "write:pets",
-                  "read:pets"
-                ]
-                          }
-            ]
+                "Bearer":[]
+              }
+            ],
+             "responses": {
+              "500": {
+                "description": "Did not update the product requested"
+              },
+              "201": {
+                "description": "Successfully updated  the product"
+              },
+            },
+            
           },
           "delete":{ 
             "tags": [
@@ -257,22 +240,23 @@ module.exports = {
                 "format": "int64"
               }
             ],
+            "security": [
+              {
+                "Bearer":[]
+              }
+            ],
             "responses": {
-              "404": {
+              "500": {
                 "description": "Did not delete the product requested"
+              },
+              "404": {
+                "description": "Product  not found"
               },
               "200": {
                 "description": "Successfully deleted  the product"
               },
             },
-            "security": [
-              {
-                "petstore_auth": [
-                  "write:pets",
-                  "read:pets"
-                ]
-              }
-            ]
+            
           },
           
       },
@@ -299,22 +283,19 @@ module.exports = {
               }
             }
           ],
+          "security": [
+            {
+              "Bearer":[]
+            }
+          ],
            "responses": {
-            "200": {
-              "description": "successful operation",
+            "201": {
+              "description": "Successfully added cart",
               },
-            "400": {
+            "500": {
               "description": "Unsuccessfull retrieval"
             }
           },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
         }
       },
       
@@ -340,19 +321,20 @@ module.exports = {
               "format": "integer"
             }
           ],
+          "security": [
+            {
+              "Bearer":[]
+            }
+          ],
           "responses": {
             "200": {
               "description": "Cart Record fetched",
             },
-            "400": {
+            "500": {
               "description": "Unsuccessful retrieval"
             },
            },
-          "security": [
-            {
-              "api_key": []
-            }
-          ]
+         
         },
         "put": {
           "tags": [
@@ -385,23 +367,20 @@ module.exports = {
  
             }
           ],
+          "security": [
+            {
+              "Bearer":[]
+            }
+          ],
           "responses": {
-            "400": {
+            "500": {
               "description": "Updation Unsuccessfull"
             },
             "200": {
               "description": "Successfully updated cart"
             }
           },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
-        },
+               },
         "delete": {
           "tags": [
             "Cart"
@@ -430,25 +409,22 @@ module.exports = {
               "schema": {
                 "$ref": "#/definitions/CartDelete"
               }
-             
+            }
+          ],
+          "security": [
+            {
+              "Bearer":[]
             }
           ],
           "responses": {
-            "400": {
+            "500": {
               "description": "Deletion Unsuccessfull"
             },
             "200": {
               "description": "Successfull deletion"
             }
           },
-          "security": [
-            {
-              "petstore_auth": [
-                "write:pets",
-                "read:pets"
-              ]
-            }
-          ]
+        
         }
       },
       "/orders/getall/{userID}": {
@@ -474,17 +450,20 @@ module.exports = {
               "format": "int64"
             }
           ],
-            "responses": {
-            "200": {
-              "description": "successful operation",
-              }
-          },
           "security": [
             {
-              "api_key": []
+              "Bearer":[]
             }
-          ]
-        }
+          ],
+            "responses": {
+            "200": {
+              "description": "Successful operation",
+              },
+            "404": { 
+              "description" : "Orders cannot be retreived "
+            },
+          },
+                  }
       },
       "/orders": {
         "post": {
@@ -509,14 +488,19 @@ module.exports = {
               }
             }
           ],
+          "security": [
+            {
+              "Bearer":[]
+            }
+          ],
           "responses": {
-            "200": {
+            "201": {
               "description": "successful operation",
               "schema": {
                 "$ref": "#/definitions/Order"
               }
             },
-            "400": {
+            "500": {
               "description": "Invalid Order"
             }
           }
@@ -541,31 +525,80 @@ module.exports = {
               "description": "ID of order that needs to be fetched",
               "required": true,
               "type": "integer",
-              "maximum": 2,
-              "minimum": 1,
               "format": "int64"
             }
           ],
+          "security": [
+            {
+              "Bearer":[]
+            }
+          ],
           "responses": {
-            "201": {
+            "200": {
               "description": "successful operation",
               "schema": {
                 "$ref": "#/definitions/Order"
               }
             },
-            "401": {
+            "404": {
               "description": "Unsuccessfull retrieval"
             }
           }
         }
       },
-      "/user": {
+      "/login": {
         "post": {
           "tags": [
-            "user"
+            "Login"
+          ],
+          "summary": "Logs user into the system",
+          "description": "",
+          "operationId": "loginUser",
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Login",
+              "required": true,
+              "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "string"
+            
+          },
+          "password": {
+            "type": "string",
+            "format": "string",
+           },
+        },
+      }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string"
+              },
+              
+            },
+            "400": {
+              "description": "Invalid username/password supplied"
+            }
+          }
+        }
+      },
+      "/users": {
+        "post": {
+          "tags": [
+            "User"
           ],
           "summary": "Create user",
-          "description": "This can only be done by the logged in user.",
+          "description": "Creating a new login for a user.",
           "operationId": "createUser",
           "produces": [
             "application/xml",
@@ -583,205 +616,22 @@ module.exports = {
             }
           ],
           "responses": {
-            "default": {
-              "description": "successful operation"
+            "201": {
+              "description": "Successfully created user"
+            },
+            "400": { 
+              "description" : "Did not create a user"
             }
           }
         }
       },
-      "/user/login": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Logs user into the system",
-          "description": "",
-          "operationId": "loginUser",
-          "produces": [
-            "application/xml",
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "query",
-              "description": "The user name for login",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "password",
-              "in": "query",
-              "description": "The password for login in clear text",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "type": "string"
-              },
-              "headers": {
-                "X-Rate-Limit": {
-                  "type": "integer",
-                  "format": "int32",
-                  "description": "calls per hour allowed by the user"
-                },
-                "X-Expires-After": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "date in UTC when token expires"
-                }
-              }
-            },
-            "400": {
-              "description": "Invalid username/password supplied"
-            }
-          }
-        }
-      },
-      "/user/logout": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Logs out current logged in user session",
-          "description": "",
-          "operationId": "logoutUser",
-          "produces": [
-            "application/xml",
-            "application/json"
-          ],
-          "parameters": [],
-          "responses": {
-            "default": {
-              "description": "successful operation"
-            }
-          }
-        }
-      },
-      "/user/{username}": {
-        "get": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Get user by user name",
-          "description": "",
-          "operationId": "getUserByName",
-          "produces": [
-            "application/xml",
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be fetched. Use user1 for testing. ",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            },
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        },
-        "put": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Updated user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "updateUser",
-          "produces": [
-            "application/xml",
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "name that need to be updated",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "in": "body",
-              "name": "body",
-              "description": "Updated user object",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid user supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        },
-        "delete": {
-          "tags": [
-            "user"
-          ],
-          "summary": "Delete user",
-          "description": "This can only be done by the logged in user.",
-          "operationId": "deleteUser",
-          "produces": [
-            "application/xml",
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "username",
-              "in": "path",
-              "description": "The name that needs to be deleted",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "responses": {
-            "400": {
-              "description": "Invalid username supplied"
-            },
-            "404": {
-              "description": "User not found"
-            }
-          }
-        }
-      }
     },
     "securityDefinitions": {
-      "petstore_auth": {
-        "type": "oauth2",
-        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-        "flow": "implicit",
-        "scopes": {
-          "write:pets": "modify pets in your account",
-          "read:pets": "read your pets"
-        }
-      },
-      "api_key": {
+      "Bearer": {
         "type": "apiKey",
-        "name": "api_key",
-        "in": "header"
-      }
+        "name": "token",
+        "in"  : "header"
+      },
     },
     "definitions": {
       "Product": {
@@ -869,7 +719,7 @@ module.exports = {
         "type": "object",
         "properties": {
           
-          "Name": {
+          "name": {
             "type": "string"
           },
           "email": {
@@ -879,7 +729,7 @@ module.exports = {
             "type": "string",
             "example": "doggie"
           },
-          "Address": {
+          "address": {
             "type": "string"
           }
         },
@@ -899,22 +749,7 @@ module.exports = {
           "name": "Order"
         }
       },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
+   },
     "externalDocs": {
       "description": "Find out more about Swagger",
       "url": "http://swagger.io"

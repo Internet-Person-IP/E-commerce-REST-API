@@ -118,17 +118,6 @@ const getUserIDFromDB = async (Column,Table,FilterName,FilterValue)=> {
 
 
 
-exports.JWTAuthentication = (req,res,next) =>{
-    const JWTToken=req.headers.token;
-    jwt.verify(JWTToken,accessTokenSecret, (err,user)=>{
-        if(err){
-            res.json({message:"This is stupid"});
-        }else{
-        req.user=user;
-        next();
-    }
-    })
-}
 /*
 
 
