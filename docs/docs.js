@@ -70,10 +70,8 @@ module.exports = {
           "operationId": "addProduct",
           "consumes": [
             "application/json",
-            "application/xml"
           ],
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -112,11 +110,9 @@ module.exports = {
           "description": "",
           "operationId": "GetProduct",
           "consumes": [
-            "application/json",
-            "application/xml"
+            "application/json"
           ],
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "responses": {
@@ -130,44 +126,8 @@ module.exports = {
           
         }
       },
-        "/products/{productID}": { 
-          "get":{ 
-            "tags": [
-              "Product"
-            ],
-            "summary": "Retreive the product requested",
-            "description": "",
-            "operationId": "GetProduct",
-            "consumes": [
-              "application/json",
-              "application/xml"
-            ],
-            "produces": [
-              "application/xml",
-              "application/json"
-            ],
-            "parameters": [
-              {
-                "name": "productID",
-                "in": "path",
-                "description": "The Product that needs to be fetched",
-                "required": true,
-                "type": "integer",
-                "format": "int64"
-              }
-            ],
-            "responses": {
-              "404": {
-                "description": "Did not find the product requested"
-              },
-              "200": {
-                "description": "Successfully retrieved  the product"
-              },
-              "500": {
-                "description": "Error retrieving the product"
-              },
-            },
-          },
+      
+        "/products/{productID}": {
           "put":{ 
             "tags": [
               "Product"
@@ -176,11 +136,9 @@ module.exports = {
             "description": "",
             "operationId": "UpdateProduct",
             "consumes": [
-              "application/json",
-              "application/xml"
+              "application/json"
             ],
             "produces": [
-              "application/xml",
               "application/json"
             ],
             "parameters": [
@@ -215,6 +173,41 @@ module.exports = {
               },
             },
             
+          }, 
+          "get":{ 
+            "tags": [
+              "Product"
+            ],
+            "summary": "Retreive the product requested",
+            "description": "",
+            "operationId": "GetProduct",
+            "consumes": [
+              "application/json"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "productID",
+                "in": "path",
+                "description": "The Product that needs to be fetched",
+                "required": true,
+                "type": "integer",
+                "format": "int64"
+              }
+            ],
+            "responses": {
+              "404": {
+                "description": "Did not find the product requested"
+              },
+              "200": {
+                "description": "Successfully retrieved  the product"
+              },
+              "500": {
+                "description": "Error retrieving the product"
+              },
+            },
           },
           "delete":{ 
             "tags": [
@@ -224,11 +217,9 @@ module.exports = {
             "description": "",
             "operationId": "DeleteProduct",
             "consumes": [
-              "application/json",
-              "application/xml"
+              "application/json"
             ],
             "produces": [
-              "application/xml",
               "application/json"
             ],
             "parameters": [
@@ -270,7 +261,6 @@ module.exports = {
           "description": "Multiple status values can be provided with comma separated strings",
           "operationId": "Create a new cart item",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -309,7 +299,6 @@ module.exports = {
           "description": "Returns the cart items for the user",
           "operationId": "getCartById",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -345,7 +334,6 @@ module.exports = {
           "description": "",
           "operationId": "UpdateCart",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -390,7 +378,6 @@ module.exports = {
           "description": "",
           "operationId": "deleteCart",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -475,7 +462,6 @@ module.exports = {
           "description": "",
           "operationId": "placeOrder",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -516,7 +502,6 @@ module.exports = {
           "description": "For valid response try integer IDs with value=1.         Other values will generated exceptions",
           "operationId": "getOrderById",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -556,7 +541,6 @@ module.exports = {
           "description": "",
           "operationId": "loginUser",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -602,7 +586,6 @@ module.exports = {
           "description": "Creating a new login for a user.",
           "operationId": "createUser",
           "produces": [
-            "application/xml",
             "application/json"
           ],
           "parameters": [
@@ -663,9 +646,6 @@ module.exports = {
             "format": "integer",
             "example": 20
           }
-        },
-        "xml": {
-          "name": "Product"
         }
       },
       "Cart": {
@@ -683,9 +663,6 @@ module.exports = {
             "type": "integer",
             "format":"integer"
           }
-        },
-        "xml": {
-          "name": "Cart"
         }
       },
       "CartDelete": { 
@@ -695,9 +672,6 @@ module.exports = {
             "type":"integer",
             "format":"integer"
           }
-        },
-        "xml": {
-          "name": "Cart Delete "
         }
       },
       "CartUpdate": {
@@ -711,9 +685,6 @@ module.exports = {
             "type": "integer",
             "format":"integer"
           }
-        },
-        "xml": {
-          "name": "CartUpdate"
         }
       },
       "User": {
@@ -733,9 +704,6 @@ module.exports = {
           "address": {
             "type": "string"
           }
-        },
-        "xml": {
-          "name": "User"
         }
       },
       "Order": {
@@ -745,9 +713,6 @@ module.exports = {
             "type": "integer",
             "format": "int64"
           }
-        },
-        "xml": {
-          "name": "Order"
         }
       },
    },

@@ -3,21 +3,17 @@ const Router = express.Router();
 const ordersController = require('../Controllers/OrdersController');
 const {JWTAuthentication, grantAccess, grantAccessViaDB} = require('../Controllers/AuthenticationController');
 /*
-This endpoints starts with /orders'
+In all routes we check if the user has a JWT Token 
+since only people that are authenticated should access these routes.
+We only need to check if the userID of the token matches the userID of the request
+therefore we use grantAccess here.
 
-get get post own or admin
-
-GET: all req.params.id=token.id
-GET: 1 SELECT userId FROM Order WHERE id=13213
-POST: userID=req.body.userID
-TODO: Deletes and Another Middleware for authenticating if it is there orderID
+We also use grantAccessViaDB since a DB check is needed to know the userID of a resource.
 
 */
-//Router.get('/getall',cartsController.GetAllCartItems);
+
 Router.get('/getall/:userID', JWTAuthentication,grantAccess('readOwn','Order','params','userID'), ordersController.getAllOrders);
 Router.get('/:orderID',JWTAuthentication,grantAccessViaDB('readOwn','Order','params','orderID','userId','Orders','Id'), ordersController.getOrder);
 Router.post('/',JWTAuthentication,grantAccess('createOwn','Order','body','userID'),ordersController.createOrder);
-//Router.delete('/:orderID',JWTAuthentication,grantAccess('deleteAny','Order'),ordersController.deleteOrder);
-module.exports = Router; 
 
-//https://hub.packtpub.com/best-practices-for-restful-web-services-naming-conventions-and-api-versioning-tutorial/
+module.exports = Router; 

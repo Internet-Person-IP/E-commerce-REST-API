@@ -2,18 +2,17 @@ const express = require('express');
 const Router = express.Router();
 const productsController = require('../Controllers/ProductsController');
 const {JWTAuthentication,grantAccess,grantAccessViaDB} = require('../Controllers/AuthenticationController');
+
 /*
-This endpoints starts with /products
+In all routes we check if the user has a JWT Token 
+since only people that are authenticated should access these routes.
+We only need to check if the userID of the token matches the userID of the request
+therefore we use grantAccess here.
 
-Here We Need a couple of routes
-Post Anyone that is authenticated
-Put Delete own or admin
+We also use grantAccessViaDB since a DB check is needed to know the userID of a resource.
 
-Products:
-PUT : SELECT CreatorID FROM Product WHERE Id=req.params.id;
-DELETE : SELECT CreatorID FROM Product WHERE Id=req.params.id;
-Column,Table,FilterName,FilterValue
 */
+
  
 
 Router.get('/getall',productsController.getAllProducts);
@@ -23,4 +22,3 @@ Router.put('/:id',JWTAuthentication,grantAccessViaDB('updateOwn','Product','para
 Router.delete('/:id',JWTAuthentication,grantAccessViaDB('deleteOwn','Product','params','id','creatorID','Product','Id'), productsController.deleteProduct);
 module.exports = Router; 
 
-//https://hub.packtpub.com/best-practices-for-restful-web-services-naming-conventions-and-api-versioning-tutorial/

@@ -1,7 +1,23 @@
 const sql = require('../util/database');
+
+/* 
+So this is used in all controller.
+
+sql.execute is a prepared statement which makes it harder for 
+SQL injections since the query and the data are not sent at the same time.
+it works but first typing a query but everytime you add user created data you 
+add it through an array as a second argument.
+
+*/
+
 /*
-How 
-/carts
+Get Cart gets the CartItems for a specific user.
+In this query when gettin the cart we want to know 
+What product is in the cart.
+To be able to do this we need to make a 
+JOIN query between Cart and Products
+Where we check which users Cart we are trying to access.
+The last Union gets total price of the Cart.
 */
 
 exports.GetCartItem = (req,res) =>{

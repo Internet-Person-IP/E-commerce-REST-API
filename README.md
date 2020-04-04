@@ -11,7 +11,7 @@ The project should include a file called serverless.env.json which is for enviro
 
 ## Abstract
 
-This project is a Ecommerce REST API that works similarly to craigslist and ebay where users can create their own products. The reason for creating this project was to learn SQL and some of the theory behind the application. The code should be commented and quite clear. The project aslo has some clear documentation in the form of swagger documentation which can be found here:
+This project is a Ecommerce REST API that works similarly to craigslist and ebay where users can create their own products. The reason for creating this project was to learn SQL and some of the theory behind the application. The code is commented in section where it might be unclear what is going on. The project aslo has some clear documentation in the form of swagger documentation which can be found here:
 
   
 
@@ -61,7 +61,7 @@ The most important Technologies used where Express to design the endpoints and M
 
   
 
-In this project a REST API was created for an E-commerce Appliction. The project used an MVC like pattern to structure the code. The code should be commented to make it somewhat more clear what the work flow is and how it works.
+In this project a REST API was created for an E-commerce Appliction. The project used an MVC like pattern to structure the code. The code should be commented to make it somewhat more clear.
 
   
 
@@ -106,39 +106,39 @@ the backend was written in Node.js using Express.js. Express was used since it i
 
   
 
-1. Node.js - Node was used for the backend since both creators of the project where familiar with Javascript. Also since the main focus was on SQL having a more sophisticated language like Java.
+1. [Node.js](https://nodejs.org/en/) - Node was used for the backend since both creators of the project where familiar with Javascript. Also since the main focus was on SQL having a more sophisticated language like Java.
 
   
 
-2. Express.js - Express was used since it made the development of the API quite streamline and there was alot of Information of Express.
+2. [Express.js](https://expressjs.com/) - Express was used since it made the development of the API quite streamline and there was alot of Information of Express.
 
   
 
-3. AWS Lambda using Serverless HTTP - AWS Lambda was used as a cheap way to host this infrastucture. AWS Lambda is free for the first million request made which made the backend infrastucture free. Using the Serverless HTTP module found in NPM we were able to fully convert the Express backend to a single lambda function. This however can possibly have issues with performance, so in production I would not recommend this approach.
+3. [AWS Lambda using Serverless HTTP](https://www.npmjs.com/package/serverless-http) - AWS Lambda was used as a cheap way to host this infrastucture. AWS Lambda is free for the first million request made which made the backend infrastucture free. Using the Serverless HTTP module found in NPM we were able to fully convert the Express backend to a single lambda function. This however can possibly have issues with performance, so in production I would not recommend this approach.
 
   
 
-4. Serverless Framework - The serverless framwork was used since deployment is quite simple. You setup an IAM user and setup the serverless.yaml file and type sls deploy in the console. The framwork spits out an endpoint and there you have your entire infrastucture.
+4. [Serverless Framework](https://serverless.com/) - The serverless framwork was used since deployment is quite simple. You setup an IAM user and setup the serverless.yaml file and type sls deploy in the console. The framwork spits out an endpoint and there you have your entire infrastucture.
 
   
 
-5. Database - MySQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. MySQL was used since in an E-commerce store there is quite a lot of relations.
+5. [Database](https://www.mysql.com/) - MySQL was used as a database since the main focus was learn SQL and develop a E-commerce REST API. MySQL was used since in an E-commerce store there is quite a lot of relations.
 
   
 
-6. JWT - This was used as a way to authenticate User for this application. It also helped with Authorization since I was able to assign roles to people.
+6. [JWT](https://jwt.io/) - This was used as a way to authenticate User for this application. It also helped with Authorization since I was able to assign roles to people.
 
   
 
-7. Authorization - Some basic Authorization was used so that only people that created a resource was able to access that resource. The Authorization used Role Based Authorization where it is currently possible to have 2 roles, one is customer and one is admin. However only a DB Admin can assign a role of admin to a user. We do not want people to be able create their admin profiles and then do whatever they want in the application.
+7. **Authorization** - Some basic Authorization was used so that only people that created a resource was able to access that resource. The Authorization used Role Based Authorization where it is currently possible to have 2 roles, one is customer and one is admin. However only a DB Admin can assign a role of admin to a user. We do not want people to be able create their admin profiles and then do whatever they want in the application.
 
   
 
-8. Swagger - Swagger was used as a simple way to display the API. This it quite easy to display and explain all the endpoints in a simple webapplication.
+8. [Swagger](https://swagger.io/) - Swagger was used as a simple way to display the API. This it quite easy to display and explain all the endpoints in a simple webapplication.
 
   
 
-9. Hosting - The hosting platform that was used in AWS. The main reason is that it is quite Cheap and hosting was really easy to setup.
+9. [Hosting](https://aws.amazon.com/) - The hosting platform that was used in AWS. The free tier was quite generous and it was easy to convert an express api to a single lambda function.
 
   
 
