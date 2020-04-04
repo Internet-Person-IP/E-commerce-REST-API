@@ -1,4 +1,4 @@
-require('dotenv').config()
+//require('dotenv').config()
 
 const express = require('express');
 const app = express();
@@ -47,4 +47,6 @@ app.use('/users',userRoutes);
 app.use('/carts', cartRoutes);
 app.use('/orders',orderRoutes);
 app.use('/', authenticationRoutes)
-app.listen(PORT, () => console.log(`Server Started on port ${PORT}`));
+
+module.exports.handler = serverless(app);
+//app.listen(PORT, () => console.log(`Server Started on port ${PORT}`));

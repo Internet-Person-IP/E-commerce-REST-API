@@ -15,7 +15,7 @@ module.exports = {
         "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
       }
     },
-    "host": "localhost:5000",
+    "host": "f7isneh248.execute-api.eu-north-1.amazonaws.com/dev",
     "basePath": "/",
     "tags": [
       {
@@ -56,6 +56,7 @@ module.exports = {
       }
     ],
     "schemes": [
+        "https",
         "http"
     ],
     "paths": {
