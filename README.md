@@ -29,27 +29,27 @@ The most important Technologies used where Express to design the endpoints and M
 
   
 
-### 1. [Introduction](#introduction)
+### 1. [Introduction](#1-introduction-1)
 
   
 
-### 2. [Purpose](#purpose)
+### 2. [Purpose](#2-purpose-1)
 
   
 
-### 3. [Technology Stack](#technology-stack)
+### 3. [Technology Stack](#3-technology-stack-1)
 
   
 
-### 4. [Database - Tables and Relations](#database-tables-and-relations)
+### 4. [Database - Tables and Relations](#4-database---tables-and-relations-1)
 
   
 
-### 5. [Improvements](#Improvements)
+### 5. [Improvements](#5-improvements-1)
 
   
 
-### 6. [Future](#Future)
+### 6. [Future](#6-future-1)
 
   
 
