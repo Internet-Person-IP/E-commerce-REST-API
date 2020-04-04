@@ -4,9 +4,9 @@
 # E-commerce REST API
 
   
-
+## Disclamer
   
-
+The project should include a file called serverless.env.json which is for enviroment variables but since we cannot display it on github for security reason that file has been hidden. To be clear it is just a normal json file with some env variables.
   
 
 ## Abstract
