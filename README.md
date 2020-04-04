@@ -196,4 +196,4 @@ So there is quite alot to improve in this application. Here are some possible im
 
   
 
-Currently there is no future for this project. It was more of a way to explore SQL more that actually creating a good API.
+Currently there is no future for this project. It was more of a way to explore SQL more that actually creating a good API. Hope this was a fun read.
