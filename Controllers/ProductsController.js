@@ -1,5 +1,17 @@
 const sql = require('../util/database');
 
+/* 
+So this is used in all controller.
+
+sql.execute is a prepared statement which makes it harder for 
+SQL injections since the query and the data are not sent at the same time.
+it works but first typing a query but everytime you add user created data you 
+add it through an array as a second argument.
+
+*/
+
+
+
 exports.getAllProducts =(req,res) =>{
     sql.execute(`
     SELECT * FROM Product;

@@ -1,6 +1,17 @@
 const AccessControl = require("accesscontrol");
 const ac = new AccessControl();
 
+
+/*
+This is my simple authorization system it is a role based authorization system
+with attributes which help with controlling who has access to what resources.
+This helps with the Authorization aspect of the application.
+
+You can read more https://www.npmjs.com/package/accesscontrol
+
+*/
+
+
 exports.Authorize = (function(){
     ac.grant('Customer')
     .createOwn('Product')

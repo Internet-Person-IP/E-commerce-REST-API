@@ -6,10 +6,11 @@ plugins:
 provider:
   name: aws
   environment:
-    HOST: ${file(../serverless.env.json):DB_HOST}
-    USER: ${file(../serverless.env.json):DB_USER}
-    DATABASE: ${file(../serverless.env.json):DB_DATABASE}
-    PASSWORD: ${file(../serverless.env.json):DB_PASSWORD}
+    DB_HOST: ${file(./serverless.env.json):DB_HOST}
+    DB_USER: ${file(./serverless.env.json):DB_USER}
+    DB_DATABASE: ${file(./serverless.env.json):DB_DATABASE}
+    DB_PASSWORD: ${file(./serverless.env.json):DB_PASSWORD}
+    JWT_SECRET: ${file(./serverless.env.json):JWT_SECRET}
   runtime: nodejs12.x
   stage: dev
   region: eu-north-1
