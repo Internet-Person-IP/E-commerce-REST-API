@@ -102,7 +102,7 @@ module.exports = {
           ]
         },
       },
-        "/products/getall": { 
+      "/products/getall": { 
         "get":{ 
           "tags": [
             "Product"
@@ -126,17 +126,16 @@ module.exports = {
               "description": "Successfully retrieved all the products"
             },
           },
-          
         }
       },
-        "/products/{productID}": { 
+      "/products/{productID}": { 
           "get":{ 
             "tags": [
               "Product"
             ],
             "summary": "Retreive the product requested",
             "description": "",
-            "operationId": "GetProduct",
+            "operationId": "GetProductbyID",
             "consumes": [
               "application/json",
               "application/xml"

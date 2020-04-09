@@ -48,3 +48,5 @@ app.use('/carts', cartRoutes);
 app.use('/orders',orderRoutes);
 app.use('/', authenticationRoutes)
 app.listen(PORT, () => console.log(`Server Started on port ${PORT}`));
+
+module.exports.handler=serverless(app);
