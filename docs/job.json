@@ -1,0 +1,30 @@
+{
+    "jobName": "illumina-dragen-job1",
+"jobQueue": "dragen-queue",
+"jobDefinition": "dragen:1",
+"containerOverrides": {
+"vcpus": 8,
+"memory": 120000,
+"command": [ "--ref-dir", "https://s3.console.aws.amazon.com/s3/buckets/sitlabilluminadragen/?region=us-east-1",
+"-1", "https://s3://sitlabilluminadragen/Denisova_reads.fastq",
+"-2", "https://s3://sitlabilluminadragen/Denisova_reads.fastq",
+"--output-directory",
+"https://s3.console.aws.amazon.com/s3/buckets/sitlabilluminadragen/?region=us-east-1",
+"--enable-duplicate-marking",
+"true",
+"--output-file-prefix",
+"NA12878_S1_L004_R1_001",
+"--enable-map-align",
+"true",
+"--output-format",
+"BAM",
+"--enable-variant-caller",
+"true",
+"--vc-sample-name",
+"DRAGEN_RGSM"
+]
+},
+"retryStrategy": {
+"attempts": 1
+}
+}

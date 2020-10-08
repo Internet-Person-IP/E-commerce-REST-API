@@ -101,7 +101,7 @@ module.exports = {
           ]
         },
       },
-        "/products/getall": { 
+      "/products/getall": { 
         "get":{ 
           "tags": [
             "Product"
@@ -123,7 +123,6 @@ module.exports = {
               "description": "Successfully retrieved all the products"
             },
           },
-          
         }
       },
       
