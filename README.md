@@ -15,7 +15,7 @@ This project is a Ecommerce REST API that works similarly to craigslist and ebay
 
   
 
-[https://f7isneh248.execute-api.eu-north-1.amazonaws.com/dev/api-docs/](https://f7isneh248.execute-api.eu-north-1.amazonaws.com/dev/api-docs/)
+[https://w9hq4ud430.execute-api.eu-north-1.amazonaws.com/dev/api-docs/](https://w9hq4ud430.execute-api.eu-north-1.amazonaws.com/dev/api-docs/)
 
   
 
@@ -77,7 +77,7 @@ The application aslo uses swagger documentation which can be found at this link:
 
   
 
-[https://f7isneh248.execute-api.eu-north-1.amazonaws.com/dev/api-docs/](https://f7isneh248.execute-api.eu-north-1.amazonaws.com/dev/api-docs/)
+[https://w9hq4ud430.execute-api.eu-north-1.amazonaws.com/dev/api-docs/](https://w9hq4ud430.execute-api.eu-north-1.amazonaws.com/dev/api-docs/)
 
   
 

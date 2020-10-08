@@ -42,12 +42,14 @@ const Cart = require("./Models/Cart");
 /*
 Tables are created here if they do not already exist
 */
-User.createTable();
-Product.createTable();
-Cart.createTable();
-Order.createTable();
-OrderItem.createTable();
-
+const createTable = async () =>{ 
+    await User.createTable();
+    await Product.createTable();
+    await Cart.createTable();
+    await Order.createTable();
+    await OrderItem.createTable();
+}
+createTable()
 /*
 
 Create all endpoints for application
@@ -66,11 +68,10 @@ app.use('/', authenticationRoutes)
 
 module.exports.handler = serverless(app);
 
-/*
-
-For local testing use this function
-
-app.listen(PORT, () => console.log(`Server Started on port ${PORT}`));
 
 
-*/
+//For local testing use this function
+
+//app.listen(PORT, () => console.log(`Server Started on port ${PORT}`));
+
+
